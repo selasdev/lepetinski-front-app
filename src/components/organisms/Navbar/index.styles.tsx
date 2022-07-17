@@ -9,6 +9,7 @@ export const StyledNav = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   margin-bottom: 32px;
 
   @media (min-width: ${themeBreakpoints.tablet}) {

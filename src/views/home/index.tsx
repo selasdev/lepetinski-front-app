@@ -3,15 +3,16 @@ import BackgroundBanner from "../../components/organisms/BackgroundBanner";
 import Categories from "../../components/organisms/Categories";
 import Hero from "../../components/organisms/Hero";
 import Navbar from "../../components/organisms/Navbar";
-
-const USER_LOGGED_IN = false;
+import { useAuthenticationProvider } from "../../contexts/Auth/context";
 
 const HomeView = () => {
+  const { authenticated } = useAuthenticationProvider();
+
   return (
     <React.Fragment>
       <Navbar />
       <BackgroundBanner />
-      {!USER_LOGGED_IN ? <Hero /> : null}
+      {!authenticated ? <Hero /> : null}
       <Categories />
     </React.Fragment>
   );
