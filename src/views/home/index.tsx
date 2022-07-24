@@ -1,7 +1,21 @@
-import React from "react";
+import React from 'react'
+import { BackgroundBanner } from '../../components/organisms/BackgroundBanner'
+import { Categories } from '../../components/organisms/Categories'
+import { Hero } from '../../components/organisms/Hero'
+import Navbar from '../../components/organisms/Navbar'
+import { useAuthenticationProvider } from '../../contexts/Auth/context'
 
 const HomeView = () => {
-  return <div>Welcome to Lepetinski!</div>;
-};
+  const { authenticated } = useAuthenticationProvider()
 
-export default HomeView;
+  return (
+    <React.Fragment>
+      <Navbar />
+      <BackgroundBanner />
+      {!authenticated ? <Hero /> : null}
+      <Categories />
+    </React.Fragment>
+  )
+}
+
+export default HomeView
