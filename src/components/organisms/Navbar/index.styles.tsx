@@ -10,7 +10,6 @@ export const StyledNav = styled.nav`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 32px;
 
   @media (min-width: ${themeBreakpoints.tablet}) {
     margin-bottom: 0px;

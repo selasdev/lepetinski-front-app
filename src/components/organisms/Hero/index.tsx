@@ -1,7 +1,12 @@
-import React from "react";
+import { StyledHeroImage, StyledHeroTitle, StyledHeroContainer } from './index.styles'
+import Button from '../../atoms/Button'
 
-const Hero = () => {
-  return <div>Hero</div>;
-};
-
-export default Hero;
+export const Hero = () => {
+  return (
+    <StyledHeroContainer>
+      <StyledHeroImage src='/assets/images/hero.svg' alt='hero' />
+      <StyledHeroTitle>Crea una cuenta y mejora tu experiencia</StyledHeroTitle>
+      <Button>CREAR CUENTA</Button>
+    </StyledHeroContainer>
+  )
+}
