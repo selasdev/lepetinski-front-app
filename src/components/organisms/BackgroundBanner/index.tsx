@@ -1,4 +1,4 @@
-import Button from '../../atoms/Button'
+import { Button } from '@mui/material'
 import {
   StyledBannerImage,
   StyledBannerContainer,
@@ -13,7 +13,7 @@ export const BackgroundBanner = () => {
       <StyledBannerImage src='/assets/images/banner.png' alt='banner' />
       <StyledBannerContentContainer>
         <StyledBannerTitle>Tu nuevo compañero a unos clicks de distancia</StyledBannerTitle>
-        <Button size='large'>COMENZAR</Button>
+        <Button variant='contained'>COMENZAR</Button>
       </StyledBannerContentContainer>
       <StyledOverlay />
     </StyledBannerContainer>
