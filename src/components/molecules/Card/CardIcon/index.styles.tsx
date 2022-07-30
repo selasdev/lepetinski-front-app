@@ -49,6 +49,10 @@ export const StyledCardIconContainer = styled.article`
   border-radius: 16px;
   padding: 24px 24px 29px;
 
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.default};
+  }
+
   @media (min-width: ${themeBreakpoints.tablet}) {
     width: 100%;
     height: 85px;

@@ -18,7 +18,7 @@ export const StyledHeroImage = styled.img`
     width: 250px;
     height: 250px;
   }
-  @media (min-width: ${themeBreakpoints.desktopmd}) {
+  @media (min-width: ${themeBreakpoints.desktopsm}) {
     width: 350px;
     height: 350px;
   }
@@ -37,7 +37,7 @@ export const StyledHeroTitle = styled.h5`
     line-height: 50px;
     margin: 54px 0;
   }
-  @media (min-width: ${themeBreakpoints.desktopmd}) {
+  @media (min-width: ${themeBreakpoints.desktopsm}) {
     font-size: 64px;
     font-weight: 300;
     line-height: 92px;

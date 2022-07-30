@@ -12,7 +12,7 @@ import {
   Box,
   Link
 } from '@mui/material'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Navbar from '../../components/organisms/Navbar'
 
 export const LoginView = () => {
@@ -22,7 +22,7 @@ export const LoginView = () => {
 
   const [showPassword, setShowPassword] = useState<boolean>(false)
   return (
-    <>
+    <React.Fragment>
       <Navbar />
       <Box
         sx={(theme) => ({
@@ -83,6 +83,6 @@ export const LoginView = () => {
           </Grid>
         </form>
       </Box>
-    </>
+    </React.Fragment>
   )
 }
