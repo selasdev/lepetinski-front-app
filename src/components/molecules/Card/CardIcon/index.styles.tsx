@@ -48,6 +48,8 @@ export const StyledCardIconContainer = styled.article`
   filter: drop-shadow(0px 0px 1px rgba(12, 26, 75, 0.24));
   border-radius: 16px;
   padding: 24px 24px 29px;
+  background: #ffffff;
+  transition: all 0.2s;
 
   &:hover {
     background: ${({ theme }) => theme.colors.primary.default};

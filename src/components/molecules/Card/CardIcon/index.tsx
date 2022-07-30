@@ -1,4 +1,5 @@
-import { Link } from "../../../atoms/Link";
+import { Link as OriginalLink } from "../../../atoms/Link";
+import styled from "styled-components";
 import {
   StyledCardIconContainer,
   StyledCardIconIcon,
@@ -10,6 +11,10 @@ export interface ICardIcon {
   icon?: string;
   link?: string;
 }
+
+const Link = styled(OriginalLink)`
+  text-decoration: none;
+`;
 
 export const CardIcon = ({
   text = "Perros",
