@@ -36,3 +36,19 @@ export const SecondaryHeader = styled.h2`
     line-height: 50px;
   }
 `;
+
+export const FinalButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 36px 0px;
+
+  @media (min-width: ${themeBreakpoints.tablet}) {
+    margin: 48px 0px;
+  }
+
+  @media (min-width: ${themeBreakpoints.desktopsm}) {
+    margin: 64px 0px;
+  }
+`;

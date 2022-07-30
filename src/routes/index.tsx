@@ -4,7 +4,10 @@ import HomeView from "../views/home";
 import { SignInView } from "../views/signin";
 import { LoginView } from "../views/login";
 import { StartView } from "../views/start";
-import { StartCategoryView } from "../views/start/category";
+import { StartRacesView } from "../views/start/races";
+import { StartSizeView } from "../views/start/sizes";
+import { StartLocationView } from "../views/start/location";
+import { SearchView } from "../views/search";
 
 const Routes = () => {
   return (
@@ -14,7 +17,14 @@ const Routes = () => {
         <Route path="/sign-in" element={<SignInView />} />
         <Route path="/login" element={<LoginView />} />
         <Route path="/start/" element={<StartView />} />
-        <Route path="/start/:category" element={<StartCategoryView />} />
+        <Route path="/start/:category" element={<StartRacesView />} />
+        <Route path="/start/:category/:race" element={<StartSizeView />} />
+        <Route
+          path="/start/:category/:race/:size"
+          element={<StartLocationView />}
+        />
+        <Route path="/search" element={<SearchView />} />
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </RouterRoutes>
     </BrowserRouter>
