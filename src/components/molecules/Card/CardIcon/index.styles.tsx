@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { themeBreakpoints } from '../../../../theme/breakpoints'
+import styled from "styled-components";
+import { themeBreakpoints } from "../../../../theme/breakpoints";
 
 export const StyledCardIconIcon = styled.img`
   width: 35px;
@@ -10,12 +10,12 @@ export const StyledCardIconIcon = styled.img`
     height: 40px;
     margin: 0 24px;
   }
-  @media (min-width: ${themeBreakpoints.desktopmd}) {
+  @media (min-width: ${themeBreakpoints.desktopsm}) {
     width: 100px;
     height: 100px;
     margin-bottom: 32px;
   }
-`
+`;
 
 export const StyledCardIconText = styled.p`
   font-size: 16px;
@@ -28,30 +28,34 @@ export const StyledCardIconText = styled.p`
     line-height: 36px;
     text-align: left;
   }
-  @media (min-width: ${themeBreakpoints.desktopmd}) {
+  @media (min-width: ${themeBreakpoints.desktopsm}) {
     font-size: 48px;
     font-weight: 400;
     line-height: 50px;
     text-align: center;
   }
-`
+`;
 
 export const StyledCardIconContainer = styled.div`
   display: flex;
-  width: 150px;
+  min-width: 150px;
   height: 85px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  box-shadow: 0px 1px 1px black;
+  box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.25);
+  filter: drop-shadow(0px 0px 1px rgba(12, 26, 75, 0.24));
   border-radius: 16px;
+  padding: 24px 24px 29px;
+
   @media (min-width: ${themeBreakpoints.tablet}) {
-    width: 350px;
+    width: 100%;
     height: 85px;
     justify-content: flex-start;
+    padding: 22px 24px;
   }
-  @media (min-width: ${themeBreakpoints.desktopmd}) {
+  @media (min-width: ${themeBreakpoints.desktopsm}) {
     flex-direction: column;
-    width: 400px;
     height: 400px;
+    padding: 32px;
   }
-`
+`;
