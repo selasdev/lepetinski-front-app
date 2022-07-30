@@ -77,7 +77,7 @@ export const Login = () => {
 
             <Grid item xs={12}>
               <Typography variant='body2' textAlign='center'>
-                ¿No tienes una cuenta? <Link href='/signIn'>CREA UNA</Link>
+                ¿No tienes una cuenta? <Link href='/sign-in'>CREA UNA</Link>
               </Typography>
             </Grid>
           </Grid>
