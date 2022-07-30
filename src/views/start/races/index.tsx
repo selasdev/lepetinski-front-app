@@ -6,7 +6,7 @@ import { CardText } from "../../../components/molecules/Card/CardText";
 import { MockCardTextRaces } from "../../../components/molecules/Card/CardText/__mocks__/data";
 import { Grid } from "@mui/material";
 
-export const StartRacesView = (): JSX.Element => {
+const StartRacesView = (): JSX.Element => {
   const { category } = useParams();
 
   return (
@@ -22,3 +22,5 @@ export const StartRacesView = (): JSX.Element => {
     </GuidedStepsTemplate>
   );
 };
+
+export default StartRacesView;

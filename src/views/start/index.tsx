@@ -4,7 +4,7 @@ import { CategoriesData } from "../../components/organisms/Categories/__mocks__/
 import { GuidedStepsTemplate } from "../../templates/GuidedSteps";
 import { MainHeader, SecondaryHeader } from "./index.styles";
 
-export const StartView = (): JSX.Element => {
+const StartView = (): JSX.Element => {
   return (
     <GuidedStepsTemplate>
       <MainHeader>Nos alegra iniciar la búsqueda de tu compañero</MainHeader>
@@ -24,3 +24,5 @@ export const StartView = (): JSX.Element => {
     </GuidedStepsTemplate>
   );
 };
+
+export default StartView;

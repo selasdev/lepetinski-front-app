@@ -1,13 +1,13 @@
 import { Navigate } from "react-router";
 import { BrowserRouter, Routes as RouterRoutes, Route } from "react-router-dom";
 import HomeView from "../views/home";
-import { SignInView } from "../views/signin";
-import { LoginView } from "../views/login";
-import { StartView } from "../views/start";
-import { StartRacesView } from "../views/start/races";
-import { StartSizeView } from "../views/start/sizes";
-import { StartLocationView } from "../views/start/location";
-import { SearchView } from "../views/search";
+import SignInView from "../views/signin";
+import LoginView from "../views/login";
+import StartView from "../views/start";
+import StartRacesView from "../views/start/races";
+import StartSizeView from "../views/start/sizes";
+import StartLocationView from "../views/start/location";
+import SearchView from "../views/search";
 
 const Routes = () => {
   return (

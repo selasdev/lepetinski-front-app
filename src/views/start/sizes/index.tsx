@@ -6,7 +6,7 @@ import { CardText } from "../../../components/molecules/Card/CardText";
 import { MockCardTextSizes } from "../../../components/molecules/Card/CardText/__mocks__/data";
 import { Grid } from "@mui/material";
 
-export const StartSizeView = (): JSX.Element => {
+const StartSizeView = (): JSX.Element => {
   const { category, race } = useParams();
 
   return (
@@ -22,3 +22,5 @@ export const StartSizeView = (): JSX.Element => {
     </GuidedStepsTemplate>
   );
 };
+
+export default StartSizeView;

@@ -19,7 +19,7 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { VisibilityOff } from "@mui/icons-material";
 
-export const SignInView = () => {
+const SignInView = () => {
   const [value, setValue] = useState<Date | null>(null);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPasswordConfirm, setShowPasswordConfirm] =
@@ -151,3 +151,5 @@ export const SignInView = () => {
     </React.Fragment>
   );
 };
+
+export default SignInView;

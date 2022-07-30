@@ -1,5 +1,7 @@
 import React from "react";
 
-export const SearchView = (): JSX.Element => {
+const SearchView = (): JSX.Element => {
   return <div>Search</div>;
 };
+
+export default SearchView;

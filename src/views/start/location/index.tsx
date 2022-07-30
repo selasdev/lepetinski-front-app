@@ -13,7 +13,7 @@ import {
 } from "./marks";
 import { Button } from "@mui/material";
 
-export const StartLocationView = (): JSX.Element => {
+const StartLocationView = (): JSX.Element => {
   const { category, race, size } = useParams();
   const [age, setAge] = useState<number>(1);
   const [distance, setDistance] = useState<number>(10);
@@ -69,3 +69,5 @@ export const StartLocationView = (): JSX.Element => {
     </GuidedStepsTemplate>
   );
 };
+
+export default StartLocationView;
