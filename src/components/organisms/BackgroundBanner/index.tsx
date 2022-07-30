@@ -15,7 +15,9 @@ export const BackgroundBanner = (): JSX.Element => {
         <StyledBannerTitle>
           Tu nuevo compañero a unos clicks de distancia
         </StyledBannerTitle>
-        <Button variant="contained">COMENZAR</Button>
+        <Button variant="contained" href="/start">
+          COMENZAR
+        </Button>
       </StyledBannerContentContainer>
       <StyledOverlay />
     </StyledBannerContainer>

@@ -1,26 +1,26 @@
 export const palette = {
   palette: {
     primary: {
-      main: '#F87959',
-      contrastText: '#fff'
+      main: "#F87959",
+      contrastText: "#fff",
     },
     secondary: {
-      main: '#F7C59F',
-      light: '#EFEFD0'
+      main: "#45566B",
+      light: "#EFEFD0",
     },
     info: {
-      main: '#004E89',
-      light: '#1A659E'
+      main: "#004E89",
+      light: "#1A659E",
     },
     error: {
-      main: '#CB3120'
+      main: "#CB3120",
     },
     warning: {
-      main: '#EEAD3C'
+      main: "#EEAD3C",
     },
-    success: { main: '#4A9835' },
+    success: { main: "#4A9835" },
     black: {
-      main: '#000000'
-    }
-  }
-}
+      main: "#27272E",
+    },
+  },
+};

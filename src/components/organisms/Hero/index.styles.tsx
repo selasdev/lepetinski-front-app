@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { themeBreakpoints } from '../../../theme/breakpoints'
+import styled from "styled-components";
+import { themeBreakpoints } from "../../../theme/breakpoints";
 
 export const StyledHeroContainer = styled.div`
   display: flex;
@@ -7,7 +7,10 @@ export const StyledHeroContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px 46px;
-`
+  a {
+    text-decoration: none;
+  }
+`;
 export const StyledHeroImage = styled.img`
   width: 120px;
   height: 120px;
@@ -19,13 +22,15 @@ export const StyledHeroImage = styled.img`
     width: 350px;
     height: 350px;
   }
-`
+`;
 export const StyledHeroTitle = styled.h5`
   font-size: 24px;
   font-weight: 400;
   line-height: 36px;
   margin: 16px 0;
   text-align: center;
+  color: ${({ theme }) => theme.colors.black.default};
+
   @media (min-width: ${themeBreakpoints.tablet}) {
     font-size: 48px;
     font-weight: 400;
@@ -38,4 +43,4 @@ export const StyledHeroTitle = styled.h5`
     line-height: 92px;
     width: 750px;
   }
-`
+`;

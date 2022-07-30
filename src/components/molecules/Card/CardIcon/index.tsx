@@ -1,3 +1,4 @@
+import { Link } from "../../../atoms/Link";
 import {
   StyledCardIconContainer,
   StyledCardIconIcon,
@@ -7,16 +8,20 @@ import {
 export interface ICardIcon {
   text?: string;
   icon?: string;
+  link?: string;
 }
 
 export const CardIcon = ({
   text = "Perros",
   icon = "/assets/icons/dog-icon.svg",
+  link = "/search?category=dog",
 }: ICardIcon) => {
   return (
-    <StyledCardIconContainer>
-      <StyledCardIconIcon src={icon} />
-      <StyledCardIconText>{text}</StyledCardIconText>
-    </StyledCardIconContainer>
+    <Link href={link}>
+      <StyledCardIconContainer>
+        <StyledCardIconIcon src={icon} />
+        <StyledCardIconText>{text}</StyledCardIconText>
+      </StyledCardIconContainer>
+    </Link>
   );
 };

@@ -22,6 +22,8 @@ export const StyledCardIconText = styled.p`
   font-weight: 400;
   line-height: 24px;
   text-align: left;
+  color: ${({ theme }) => theme.colors.black.default};
+
   @media (min-width: ${themeBreakpoints.tablet}) {
     font-size: 24px;
     font-weight: 400;
@@ -36,7 +38,7 @@ export const StyledCardIconText = styled.p`
   }
 `;
 
-export const StyledCardIconContainer = styled.div`
+export const StyledCardIconContainer = styled.article`
   display: flex;
   min-width: 150px;
   height: 85px;

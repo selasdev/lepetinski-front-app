@@ -15,7 +15,7 @@ import {
 import { useState } from 'react'
 import Navbar from '../../components/organisms/Navbar'
 
-export const Login = () => {
+export const LoginView = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault()
   }

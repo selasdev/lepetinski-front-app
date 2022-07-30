@@ -26,10 +26,10 @@ export interface IThemeColors {
 
 export const themeColors: IThemeColors = {
   primary: {
-    default: "#FF6B35",
+    default: "#F87959",
   },
   secondary: {
-    default: "#F7C59F",
+    default: "#45566B",
     white: "#EFEFD0",
   },
   info: {
@@ -44,6 +44,6 @@ export const themeColors: IThemeColors = {
   },
   success: { default: "#4A9835" },
   black: {
-    default: "#000000",
+    default: "#27272E",
   },
 };

@@ -16,8 +16,8 @@ export const Categories = ({
     <>
       <StyledCategoriesTitle>Categoría populares</StyledCategoriesTitle>
       <StyledCategoriesContainer>
-        {categories.map(({ icon, text }) => (
-          <CardIcon icon={icon} text={text} />
+        {categories.map(({ icon, text }, index) => (
+          <CardIcon key={`${index}_text`} icon={icon} text={text} />
         ))}
       </StyledCategoriesContainer>
     </>
