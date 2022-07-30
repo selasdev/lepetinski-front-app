@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes as RouterRoutes, Route } from 'react-router-dom'
 import HomeView from '../views/home'
-import { SignIn } from '../views/signIn'
-import { Login } from '../views/Login'
+import { SignIn } from '../views/signin'
+import { Login } from '../views/login'
 const Routes = () => {
   return (
     <BrowserRouter>
       <RouterRoutes>
         <Route path='/' element={<HomeView />} />
-        <Route path='/signIn' element={<SignIn />} />
+        <Route path='/sign-in' element={<SignIn />} />
         <Route path='/login' element={<Login />} />
       </RouterRoutes>
     </BrowserRouter>
