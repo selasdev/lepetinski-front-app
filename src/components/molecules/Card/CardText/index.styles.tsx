@@ -1,34 +1,19 @@
 import styled from "styled-components";
 import { themeBreakpoints } from "../../../../theme/breakpoints";
 
-export const StyledCardIconIcon = styled.img`
-  width: 35px;
-  height: 35px;
-  margin-right: 12px;
-  @media (min-width: ${themeBreakpoints.tablet}) {
-    width: 40px;
-    height: 40px;
-    margin: 0 24px;
-  }
-  @media (min-width: ${themeBreakpoints.desktopsm}) {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 32px;
-  }
-`;
-
-export const StyledCardIconText = styled.p`
-  font-size: 16px;
+export const StyledCardTextText = styled.p`
   font-weight: 400;
+  font-size: 16px;
   line-height: 24px;
-  text-align: left;
+  letter-spacing: 0.46px;
+  text-align: center;
   color: ${({ theme }) => theme.colors.black.default};
 
   @media (min-width: ${themeBreakpoints.tablet}) {
     font-size: 24px;
     font-weight: 400;
     line-height: 36px;
-    text-align: left;
+    text-align: center;
   }
   @media (min-width: ${themeBreakpoints.desktopsm}) {
     font-size: 48px;
@@ -38,11 +23,11 @@ export const StyledCardIconText = styled.p`
   }
 `;
 
-export const StyledCardIconContainer = styled.article`
+export const StyledCardTextContainer = styled.article`
   display: flex;
   min-width: 150px;
   height: 85px;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.25);
   filter: drop-shadow(0px 0px 1px rgba(12, 26, 75, 0.24));
@@ -58,7 +43,7 @@ export const StyledCardIconContainer = styled.article`
   @media (min-width: ${themeBreakpoints.tablet}) {
     width: 100%;
     height: 85px;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 22px 24px;
   }
   @media (min-width: ${themeBreakpoints.desktopsm}) {

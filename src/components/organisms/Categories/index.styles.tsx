@@ -7,6 +7,7 @@ export const StyledCategoriesTitle = styled.h6`
   line-height: 30px;
   text-align: left;
   margin: 34px 0 22px 16px;
+  color: ${({ theme }) => theme.colors.black.default};
 
   @media (min-width: ${themeBreakpoints.tablet}) {
     font-family: Roboto;
@@ -33,6 +34,10 @@ export const StyledCategoriesContainer = styled.div`
   align-items: center;
   margin: 0px 32px 32px;
   grid-template-columns: 1fr 1fr;
+  * {
+    text-decoration: none;
+  }
+
   @media (min-width: ${themeBreakpoints.tablet}) {
     gap: 20px;
     margin-bottom: 48px;

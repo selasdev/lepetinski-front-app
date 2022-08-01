@@ -1,4 +1,4 @@
-import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Grid,
   FormControl,
@@ -10,79 +10,86 @@ import {
   Button,
   Typography,
   Box,
-  Link
-} from '@mui/material'
-import { useState } from 'react'
-import Navbar from '../../components/organisms/Navbar'
+  Link,
+} from "@mui/material";
+import React, { useState } from "react";
+import Navbar from "../../components/organisms/Navbar";
 
-export const Login = () => {
+const LoginView = () => {
   const handleSubmit = (event: any) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
-  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   return (
-    <>
+    <React.Fragment>
       <Navbar />
       <Box
         sx={(theme) => ({
-          marginTop: '150px',
-          [theme.breakpoints.up('sm')]: {
-            background: '#EFEFD0',
-            maxWidth: '407px',
-            margin: '64px auto 0'
+          marginTop: "150px",
+          [theme.breakpoints.up("sm")]: {
+            background: "#EFEFD0",
+            maxWidth: "407px",
+            margin: "64px auto 0",
           },
-          padding: '32px 16px 68px',
-          borderRadius: '15px'
+          padding: "32px 16px 68px",
+          borderRadius: "15px",
         })}
       >
         <form onSubmit={handleSubmit}>
           <Grid container rowSpacing={4}>
             <Grid item xs={12}>
               <FormControl fullWidth>
-                <TextField id='name' label='Nombre completo' variant='outlined' required />
+                <TextField
+                  id="name"
+                  label="Nombre completo"
+                  variant="outlined"
+                  required
+                />
               </FormControl>
             </Grid>
 
             <Grid item xs={12}>
-              <FormControl variant='outlined' fullWidth>
-                <InputLabel htmlFor='password'>Contraseña</InputLabel>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel htmlFor="password">Contraseña</InputLabel>
                 <OutlinedInput
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   required
-                  id='password'
+                  id="password"
                   endAdornment={
-                    <InputAdornment position='end'>
+                    <InputAdornment position="end">
                       <IconButton
-                        aria-label='toggle password visibility'
-                        edge='end'
+                        aria-label="toggle password visibility"
+                        edge="end"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
                     </InputAdornment>
                   }
-                  label='Contraseña'
+                  label="Contraseña"
                 />
               </FormControl>
             </Grid>
 
             <Grid item xs={12}>
-              <Box sx={{ '& button': { width: '100%' } }}>
-                <Button variant='contained' type='submit'>
+              <Box sx={{ "& button": { width: "100%" } }}>
+                <Button variant="contained" type="submit">
                   INICIAR SESIÓN
                 </Button>
               </Box>
             </Grid>
 
             <Grid item xs={12}>
-              <Typography variant='body2' textAlign='center'>
-                ¿No tienes una cuenta? <Link href='/sign-in'>CREA UNA</Link>
+              <Typography variant="body2" textAlign="center">
+                ¿No tienes una cuenta? <Link href="/sign-in">CREA UNA</Link>
               </Typography>
             </Grid>
           </Grid>
         </form>
       </Box>
-    </>
-  )
-}
+    </React.Fragment>
+  );
+};
+
+export default LoginView;

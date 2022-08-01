@@ -14,7 +14,7 @@ export const StyledBannerContainer = styled.div`
   @media (min-width: ${themeBreakpoints.tablet}) {
     height: 426px;
   }
-  @media (min-width: ${themeBreakpoints.desktopmd}) {
+  @media (min-width: ${themeBreakpoints.desktopsm}) {
     height: 529px;
   }
 `
