@@ -1,4 +1,4 @@
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import { CardIcon } from "../../components/molecules/Card/CardIcon";
 import { CategoriesData } from "../../components/organisms/Categories/__mocks__/data";
 import { GuidedStepsTemplate } from "../../templates/GuidedSteps";

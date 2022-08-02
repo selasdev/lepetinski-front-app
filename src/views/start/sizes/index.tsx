@@ -9,6 +9,8 @@ import { Grid } from "@mui/material";
 const StartSizeView = (): JSX.Element => {
   const { category, race } = useParams();
 
+  console.log(category, race);
+
   return (
     <GuidedStepsTemplate>
       <SecondaryHeader>¿Qué tan grande es tu compañero?</SecondaryHeader>

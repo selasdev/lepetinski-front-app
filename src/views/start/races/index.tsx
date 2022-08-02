@@ -9,6 +9,8 @@ import { Grid } from "@mui/material";
 const StartRacesView = (): JSX.Element => {
   const { category } = useParams();
 
+  console.log(category);
+
   return (
     <GuidedStepsTemplate>
       <SecondaryHeader>¿Pensabas en alguna raza específica?</SecondaryHeader>
