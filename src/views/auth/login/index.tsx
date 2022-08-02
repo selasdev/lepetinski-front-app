@@ -13,7 +13,7 @@ import {
   Link,
 } from "@mui/material";
 import React, { useState } from "react";
-import Navbar from "../../components/organisms/Navbar";
+import Navbar from "../../../components/organisms/Navbar";
 
 const LoginView = () => {
   const handleSubmit = (event: any) => {
