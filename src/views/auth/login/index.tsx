@@ -41,8 +41,8 @@ const LoginView = () => {
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <TextField
-                  id="name"
-                  label="Nombre completo"
+                  id="email"
+                  label="Correo electrónico"
                   variant="outlined"
                   required
                 />
