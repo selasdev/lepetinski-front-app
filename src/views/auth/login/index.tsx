@@ -1,93 +1,29 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  Grid,
-  FormControl,
-  TextField,
-  InputLabel,
-  OutlinedInput,
-  InputAdornment,
-  IconButton,
-  Button,
-  Typography,
-  Box,
-  Link,
-} from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router";
 import Navbar from "../../../components/organisms/Navbar";
+import { useAuthenticationProvider } from "../../../contexts/Auth/context";
+import LoginForm, { FormValuesType } from "./form";
 
 const LoginView = () => {
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
+  const navigate = useNavigate();
+  const { setUser } = useAuthenticationProvider();
+
+  const onFormSubmit = (formValues: FormValuesType) => {
+    if (setUser) {
+      setUser({
+        name: "José Pérez",
+        birthDate: "06/04/1989",
+        email: formValues.email,
+        id: "123",
+      });
+    }
+    navigate("/");
   };
 
-  const [showPassword, setShowPassword] = useState<boolean>(false);
   return (
     <React.Fragment>
       <Navbar />
-      <Box
-        sx={(theme) => ({
-          marginTop: "150px",
-          [theme.breakpoints.up("sm")]: {
-            background: "#EFEFD0",
-            maxWidth: "407px",
-            margin: "64px auto 0",
-          },
-          padding: "32px 16px 68px",
-          borderRadius: "15px",
-        })}
-      >
-        <form onSubmit={handleSubmit}>
-          <Grid container rowSpacing={4}>
-            <Grid item xs={12}>
-              <FormControl fullWidth>
-                <TextField
-                  id="email"
-                  label="Correo electrónico"
-                  variant="outlined"
-                  required
-                />
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={12}>
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel htmlFor="password">Contraseña</InputLabel>
-                <OutlinedInput
-                  type={showPassword ? "text" : "password"}
-                  required
-                  id="password"
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        edge="end"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Contraseña"
-                />
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={12}>
-              <Box sx={{ "& button": { width: "100%" } }}>
-                <Button variant="contained" type="submit">
-                  INICIAR SESIÓN
-                </Button>
-              </Box>
-            </Grid>
-
-            <Grid item xs={12}>
-              <Typography variant="body2" textAlign="center">
-                ¿No tienes una cuenta? <Link href="/sign-in">CREA UNA</Link>
-              </Typography>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
+      <LoginForm onSubmit={onFormSubmit} />
     </React.Fragment>
   );
 };
