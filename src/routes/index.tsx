@@ -6,7 +6,7 @@ import StartView from './../views/start/index'
 import StartRacesView from './../views/start/races/index'
 import StartSizeView from './../views/start/sizes/index'
 import StartLocationView from './../views/start/location/index'
-import SearchView from './../views/search/index'
+import { SearchView } from './../views/search/index'
 import SignInView from '../views/auth/signin/index'
 import { PetDetailView } from '../views/petDetail'
 
@@ -21,7 +21,7 @@ const Routes = () => {
         <Route path='/start/:category' element={<StartRacesView />} />
         <Route path='/start/:category/:race' element={<StartSizeView />} />
         <Route path='/start/:category/:race/:size' element={<StartLocationView />} />
-        <Route path='/search' element={<SearchView />} />
+        <Route path='/search/:category' element={<SearchView />} />
         <Route path='/pet-detail' element={<PetDetailView />} />
 
         <Route path='*' element={<Navigate to='/' replace />} />
