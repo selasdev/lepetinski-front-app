@@ -2,9 +2,9 @@ import React from "react";
 import { IAnimalCard } from "../../../types/cards";
 import { MainContainer, MainTitle } from "./index.styles";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import { CardAnimal } from "../../molecules/Card/CardAnimal";
-
+import "swiper/css";
+import "./index.css";
 interface ISwiperCardList {
   title?: string;
   highlight?: string;
@@ -13,7 +13,7 @@ interface ISwiperCardList {
 
 const breakpoints = {
   1: {
-    slidesPerView: 1.5,
+    slidesPerView: 1.4,
   },
   768: {
     slidesPerView: 2,
@@ -39,7 +39,14 @@ export const SwiperCardList = ({
         )}
       </MainTitle>
 
-      <Swiper slidesPerView={1.5} spaceBetween={16} breakpoints={breakpoints}>
+      <Swiper
+        grabCursor
+        simulateTouch
+        noSwiping={false}
+        slidesPerView={1.4}
+        spaceBetween={16}
+        breakpoints={breakpoints}
+      >
         {cards &&
           cards.map((card, index) => (
             <SwiperSlide>
