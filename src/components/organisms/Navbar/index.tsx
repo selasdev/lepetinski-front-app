@@ -16,7 +16,7 @@ import {
 } from '@mui/material'
 import { StyledLogoimage } from './index.styles'
 import MenuIcon from '@mui/icons-material/Menu'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import React from 'react'
 import { useAuthenticationProvider } from '../../../contexts/Auth/context'
 import { DrawerLoggedItems, DrawerNotLoggedItems } from './data'
@@ -29,9 +29,6 @@ const Navbar = (): JSX.Element => {
 
   const { authenticated } = useAuthenticationProvider()
 
-  useEffect(() => {
-    console.log(authenticated, 'upa')
-  }, [authenticated])
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
