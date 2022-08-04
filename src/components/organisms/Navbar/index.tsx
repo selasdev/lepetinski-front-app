@@ -16,18 +16,22 @@ import {
 } from '@mui/material'
 import { StyledLogoimage } from './index.styles'
 import MenuIcon from '@mui/icons-material/Menu'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
+import { useAuthenticationProvider } from '../../../contexts/Auth/context'
+import { DrawerLoggedItems, DrawerNotLoggedItems } from './data'
 
-export interface INavbar {
-  showAuthenticationButton?: boolean
-}
-
-const Navbar = ({ showAuthenticationButton = false }: INavbar): JSX.Element => {
+const Navbar = (): JSX.Element => {
   const container = window !== undefined ? () => window.document.body : undefined
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
 
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const { authenticated } = useAuthenticationProvider()
+
+  useEffect(() => {
+    console.log(authenticated, 'upa')
+  }, [authenticated])
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
@@ -42,32 +46,61 @@ const Navbar = ({ showAuthenticationButton = false }: INavbar): JSX.Element => {
   const drawer = (
     <Box onClick={handleDrawerToggle}>
       <List>
-        <ListItem>
-          <ListItemText
-            primary='Bienvenido'
-            primaryTypographyProps={{ fontWeight: 'bold', fontSize: '24px' }}
-          />
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton href='/login'>
-            <ListItemText primary='Inicia sesión' primaryTypographyProps={{ fontSize: '20px' }} />
-          </ListItemButton>
-        </ListItem>
-        <Divider />
-        <ListItem disablePadding>
-          <ListItemButton href='/sign-in'>
-            <ListItemText
-              primary='Crea una cuenta'
-              primaryTypographyProps={{ fontSize: '20px' }}
-              sx={(theme) => ({
-                color: theme.palette.primary.main
-              })}
-            />
-          </ListItemButton>
-        </ListItem>
+        {(authenticated ? DrawerLoggedItems : DrawerNotLoggedItems).map((item) => (
+          <Box key={item.label + item.href}>
+            <ListItem disablePadding>
+              <Link
+                underline='none'
+                href={item.href}
+                color={item.color}
+                sx={() => ({
+                  width: '100%'
+                })}
+              >
+                <ListItemButton>
+                  <ListItemText
+                    primary={item.label}
+                    primaryTypographyProps={{ fontSize: '20px' }}
+                  />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+            <Divider />
+          </Box>
+        ))}
       </List>
     </Box>
   )
+
+  const dropdown = (
+    <Menu
+      id='menu-appbar'
+      anchorEl={anchorElNav}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'left'
+      }}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'left'
+      }}
+      open={Boolean(anchorElNav)}
+      onClose={handleCloseNavMenu}
+    >
+      {(authenticated ? DrawerLoggedItems : DrawerNotLoggedItems).map((item) => (
+        <Box key={item.label + item.href}>
+          <MenuItem onClick={handleCloseNavMenu}>
+            <Link href={item.href} underline='none' color={item.color}>
+              {item.label}
+            </Link>
+          </MenuItem>
+          <Divider />
+        </Box>
+      ))}
+    </Menu>
+  )
+
   return (
     <>
       <AppBar
@@ -129,36 +162,7 @@ const Navbar = ({ showAuthenticationButton = false }: INavbar): JSX.Element => {
           >
             INICIAR SESIÓN
           </Button>
-          <Menu
-            id='menu-appbar'
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left'
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'left'
-            }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-            sx={{
-              display: { xs: 'block', md: 'none', width: '100%' }
-            }}
-          >
-            <MenuItem onClick={handleCloseNavMenu}>
-              <Link href='/login' underline='none' color='secondary'>
-                Iniciar Sesión
-              </Link>
-            </MenuItem>
-            <Divider />
-            <MenuItem onClick={handleCloseNavMenu}>
-              <Link href='/sign-in' underline='none'>
-                Crear Cuenta
-              </Link>
-            </MenuItem>
-          </Menu>
+          {dropdown}
         </Toolbar>
       </AppBar>
       <Box component='nav'>
