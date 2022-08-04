@@ -26,7 +26,7 @@ export const LoggedInHome = () => {
   return (
     <React.Fragment>
       <Navbar />
-      <BackgroundBanner />
+      <BackgroundBanner expanded />
       <Categories />
     </React.Fragment>
   );
