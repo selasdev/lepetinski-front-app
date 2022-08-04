@@ -6,12 +6,12 @@ import Navbar from "../../components/organisms/Navbar";
 import { SwiperCardList } from "../../components/organisms/SwiperCardList";
 import { useAuthenticationProvider } from "../../contexts/Auth/context";
 import { AnimalCardsMocks } from "./__mocks__/data";
-
+        
 const HomeView = () => {
-  const { authenticated } = useAuthenticationProvider();
+  const { authenticated } = useAuthenticationProvider()
 
-  return authenticated ? <LoggedInHome /> : <LoggedOutHome />;
-};
+  return authenticated ? <LoggedInHome /> : <LoggedOutHome />
+}
 
 export const LoggedOutHome = () => {
   return (
@@ -21,8 +21,8 @@ export const LoggedOutHome = () => {
       <Hero />
       <Categories />
     </React.Fragment>
-  );
-};
+  )
+}
 
 export const LoggedInHome = () => {
   return (
@@ -37,7 +37,7 @@ export const LoggedInHome = () => {
       />
       <SwiperCardList title="Busquedas recientes" cards={AnimalCardsMocks} />
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default HomeView;
+export default HomeView
