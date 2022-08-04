@@ -1,15 +1,15 @@
-import React from "react";
-import { BackgroundBanner } from "../../components/organisms/BackgroundBanner";
-import { Categories } from "../../components/organisms/Categories";
-import { Hero } from "../../components/organisms/Hero";
-import Navbar from "../../components/organisms/Navbar";
-import { useAuthenticationProvider } from "../../contexts/Auth/context";
+import React from 'react'
+import { BackgroundBanner } from '../../components/organisms/BackgroundBanner'
+import { Categories } from '../../components/organisms/Categories'
+import { Hero } from '../../components/organisms/Hero'
+import Navbar from '../../components/organisms/Navbar'
+import { useAuthenticationProvider } from '../../contexts/Auth/context'
 
 const HomeView = () => {
-  const { authenticated } = useAuthenticationProvider();
+  const { authenticated } = useAuthenticationProvider()
 
-  return authenticated ? <LoggedInHome /> : <LoggedOutHome />;
-};
+  return authenticated ? <LoggedInHome /> : <LoggedOutHome />
+}
 
 export const LoggedOutHome = () => {
   return (
@@ -19,8 +19,8 @@ export const LoggedOutHome = () => {
       <Hero />
       <Categories />
     </React.Fragment>
-  );
-};
+  )
+}
 
 export const LoggedInHome = () => {
   return (
@@ -29,7 +29,7 @@ export const LoggedInHome = () => {
       <BackgroundBanner />
       <Categories />
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default HomeView;
+export default HomeView
