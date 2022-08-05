@@ -58,15 +58,15 @@ export const SearchView = (): JSX.Element => {
             <Typography variant='h4' fontSize='24px' fontWeight='bold'>
               {category}
             </Typography>
-            <Button color='secondary' variant='contained'>
+            <Button color='secondary' variant='contained' href='/filters'>
               FILTROS
             </Button>
           </Stack>
         )}
 
         <Grid container spacing={4} marginTop={{ xs: '20px', sm: '40px' }}>
-          {results.map((item: ICardPet) => (
-            <Grid item xs={12} sm={6} md={4} lg={3}>
+          {results.map((item: ICardPet, idx) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={item.name + idx}>
               <CardPet {...item} />
             </Grid>
           ))}

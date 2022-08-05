@@ -19,8 +19,8 @@ export const CardPet = ({ img, name, features, address }: ICardPet) => {
             {name}
           </Typography>
           <Stack direction='row' divider={<Box margin='0 5px'> - </Box>}>
-            {features?.map((feature) => (
-              <Typography variant='body2' color='text.secondary'>
+            {features?.map((feature, idx) => (
+              <Typography variant='body2' color='text.secondary' key={idx + feature}>
                 {feature}
               </Typography>
             ))}
