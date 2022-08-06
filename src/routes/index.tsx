@@ -9,7 +9,6 @@ import StartLocationView from './../views/start/location/index'
 import { SearchView } from './../views/search/index'
 import SignInView from '../views/auth/signin/index'
 import { PetDetailView } from '../views/petDetail'
-import { FiltersView } from '../views/filters'
 import { ProfileView } from '../views/profile'
 
 const Routes = () => {
@@ -25,7 +24,6 @@ const Routes = () => {
         <Route path='/start/:category/:race/:size' element={<StartLocationView />} />
         <Route path='/search/:category/:race/:size' element={<SearchView />} />
         <Route path='/pet-detail' element={<PetDetailView />} />
-        <Route path='/filters' element={<FiltersView />} />
         <Route path='/profile' element={<ProfileView />} />
 
         <Route path='*' element={<Navigate to='/' replace />} />

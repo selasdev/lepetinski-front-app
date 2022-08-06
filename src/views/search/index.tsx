@@ -19,11 +19,14 @@ import { results } from './__mocks__/data'
 import { CardPet } from '../../components/molecules/Card/CardPet'
 import { ICardPet } from '../../components/molecules/Card/CardPet/types'
 import SearchIcon from '@mui/icons-material/Search'
+import { FiltersView } from './filters/index'
+import { useState } from 'react'
 
 export const SearchView = (): JSX.Element => {
   const { category, race, size } = useParams()
   const theme = useTheme()
   const matchesSm = useMediaQuery(theme.breakpoints.up('sm'))
+  const [openFilters, setOpenFilters] = useState<boolean>(false)
   return (
     <>
       <Navbar />
@@ -58,7 +61,7 @@ export const SearchView = (): JSX.Element => {
             <Typography variant='h4' fontSize='24px' fontWeight='bold'>
               {category}
             </Typography>
-            <Button color='secondary' variant='contained' href='/filters'>
+            <Button color='secondary' variant='contained' onClick={() => setOpenFilters(true)}>
               FILTROS
             </Button>
           </Stack>
@@ -71,6 +74,7 @@ export const SearchView = (): JSX.Element => {
             </Grid>
           ))}
         </Grid>
+        <FiltersView open={openFilters} handleClose={() => setOpenFilters(false)} />
       </Box>
     </>
   )

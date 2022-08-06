@@ -9,3 +9,8 @@ export type IFiltersFormValues = {
 export interface IFiltersForm {
   onSubmit: (values: IFiltersFormValues) => void
 }
+
+export interface IFilters {
+  open: boolean
+  handleClose: () => void
+}
