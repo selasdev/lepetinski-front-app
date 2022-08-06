@@ -14,6 +14,8 @@ const LoginView = () => {
         name: 'José Pérez',
         birthDate: '06/04/1989',
         email: formValues.email,
+        address: 'La Rotaria',
+        age: '22 años',
         id: '123'
       })
     }
