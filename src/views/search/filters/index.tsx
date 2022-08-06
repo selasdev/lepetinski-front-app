@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, Link, Slide } from '@mui/material'
+import { Box, Button, Dialog, Slide } from '@mui/material'
 import { FiltersForm } from './form'
 import { IFilters, IFiltersFormValues } from './types'
 import Navbar from '../../../components/organisms/Navbar'
