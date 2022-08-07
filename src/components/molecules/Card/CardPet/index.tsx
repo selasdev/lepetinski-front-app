@@ -1,9 +1,12 @@
 import { Card, CardMedia, CardContent, Typography, Stack, Box } from '@mui/material'
 import { ICardPet } from './types'
+import { useNavigate } from 'react-router'
 
 export const CardPet = ({ img, name, features, address }: ICardPet) => {
+  const navigate = useNavigate()
+
   return (
-    <Card>
+    <Card onClick={() => navigate('/pet-adopt')}>
       <CardContent>
         <CardMedia
           component='img'
@@ -11,6 +14,7 @@ export const CardPet = ({ img, name, features, address }: ICardPet) => {
           image={img}
           alt='pet'
           sx={() => ({
+            width: '100%',
             borderRadius: '15px'
           })}
         />
