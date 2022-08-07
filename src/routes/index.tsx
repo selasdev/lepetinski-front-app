@@ -27,7 +27,6 @@ const Routes = () => {
         <Route path='/pet-detail' element={<PetDetailView />} />
         <Route path='/profile' element={<ProfileView />} />
         <Route path='/pet-adopt' element={<PetAdoptView />} />
-
         <Route path='*' element={<Navigate to='/' replace />} />
       </RouterRoutes>
     </BrowserRouter>
