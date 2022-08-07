@@ -23,6 +23,11 @@ export const DrawerLoggedItems = [
     color: 'secondary'
   },
   {
+    label: 'Mi Perfil',
+    href: '/profile',
+    color: 'secondary'
+  },
+  {
     label: 'Guardados',
     href: '*',
     color: 'secondary'
