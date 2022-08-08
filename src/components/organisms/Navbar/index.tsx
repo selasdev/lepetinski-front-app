@@ -157,7 +157,7 @@ const Navbar = (): JSX.Element => {
             })}
             onClick={handleOpenNavMenu}
           >
-            INICIAR SESIÓN
+            {authenticated ? 'USUARIO' : 'INICIAR SESIÓN'}
           </Button>
           {dropdown}
         </Toolbar>
