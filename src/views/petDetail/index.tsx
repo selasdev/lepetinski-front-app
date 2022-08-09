@@ -111,6 +111,7 @@ export const PetDetailView = () => {
 
               <Stack spacing={2}>
                 <Button
+                  href='/finish-adopt'
                   variant='contained'
                   sx={(theme) => ({
                     width: '100%',
