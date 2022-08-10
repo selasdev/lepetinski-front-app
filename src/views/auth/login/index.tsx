@@ -24,7 +24,7 @@ const LoginView = () => {
       } 
       axios.post('https://t00e9m.deta.dev/login', datos, config)
         .then(function (response:any) {
-          console.log(response)
+          // console.log(response)
 
           setUser({
             email: response.data.email,

@@ -7,12 +7,12 @@ import Navbar from '../../components/organisms/Navbar'
 import { CancelAdoptModal } from './cancelAdoptModal'
 import { data } from './__mocks__/data'
 
-export const PetAdoptView = () => {
+export const PetPostView = () => {
   const [openCancelAdoptionModal, setOpenCancelAdoptionModal] = useState<boolean>(false)
 
-  const { id , idpost} = useParams();
+  const {idpost} = useParams();
 
-  const idAdop = id ? id : '0'
+  const idAdop = idpost ? idpost : '0'
 
   const [post, setPost] = useState({
     descripcion: '',
@@ -67,7 +67,7 @@ export const PetAdoptView = () => {
               marginTop: '25px'
             })}
           >
-            CANCELAR ADOPCIÓN
+            CANCELAR PUBLICACION
           </Button>
         </Box>
       </Box>

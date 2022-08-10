@@ -10,8 +10,6 @@ import axios from "axios";
 const StartRacesView = (): JSX.Element => {
   const { category } = useParams();
 
-  console.log(category);
-
   const [races, setRaces] = useState<Array<any>>([])
 
   useEffect(() => {

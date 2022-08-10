@@ -31,16 +31,16 @@ export const Categories = (): JSX.Element => {
       
   }, [])
 
-  useEffect(() => {
-    console.log(categories)
-  }, [categories])
+  // useEffect(() => {
+  //   console.log(categories)
+  // }, [categories])
   
   return (
     <>
       <StyledCategoriesTitle>Categoría populares</StyledCategoriesTitle>
       <StyledCategoriesContainer>
         {categories.map(({ nombre, foto_url, id }) => (
-          <CardIcon key={`${id}_text`} icon={foto_url} text={nombre} />
+          <CardIcon key={`${id}_text`} icon={foto_url} text={nombre} link={`/start/${id}`} />
         ))}
       </StyledCategoriesContainer>
     </>

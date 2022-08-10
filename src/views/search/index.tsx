@@ -95,11 +95,11 @@ export const SearchView = (): JSX.Element => {
         <Grid container spacing={4} marginTop={{ xs: '20px', sm: '40px' }}>
           {mascotas.map((mascota) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={mascota.id}>
-              <CardPet id={mascota.id} img={mascota.foto_url} name={mascota.nombre} features={[mascota.info_salud, mascota.edad, 'macho']} address='Tachira' origin='1' />
+              <CardPet id={mascota.id} idpost={mascota.id} img={mascota.foto_url} name={mascota.nombre} features={[mascota.info_salud, mascota.edad, 'macho']} address='Tachira' origin='1' />
             </Grid>
           ))}
         </Grid>
-        <FiltersView open={openFilters} handleClose={() => setOpenFilters(false)} />
+        <FiltersView open={openFilters} id='1' handleClose={() => setOpenFilters(false)} />
       </Box>
     </>
   )

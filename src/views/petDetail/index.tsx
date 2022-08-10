@@ -22,8 +22,9 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import axios from 'axios'
+import { useAuthenticationProvider } from '../../contexts/Auth/context'
 
 export const PetDetailView = () => {
   const petFilters =
@@ -31,7 +32,9 @@ export const PetDetailView = () => {
     mockData.petAge + ' años' + ' - ' + mockData.petGender + ' - ' + mockData.petRace
     
   const { id } = useParams();
-  
+  const { authenticated, user } = useAuthenticationProvider()
+  const navigate = useNavigate()
+
   const theme = useTheme()
   const matchesSm = useMediaQuery(theme.breakpoints.up('sm'))
 
@@ -57,6 +60,7 @@ export const PetDetailView = () => {
 
   const [post, setPost] = useState({
     descripcion: '',
+    id: 0,
     mascota: {
       foto_url: '',
       nombre: '',
@@ -86,10 +90,32 @@ export const PetDetailView = () => {
       
   }, [])
 
-  useEffect(() => {
-    console.log(post)
-  }, [post])
+  // useEffect(() => {
+  //   console.log(post)
+  // }, [post])
   
+  const handleAdopt = () => {
+    const config = {
+      headers: { 
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods' : '*'
+      }
+    }
+    
+    const data = {
+      post_id: post.id,
+      adoptador_id: user?.id
+    }
+    
+    axios.post('https://t00e9m.deta.dev/adoptar', data, config)
+      .then(function (response:any) {
+        console.log(response)
+        navigate(`/finish-adopt/${post.id}`)
+      })
+      .catch(function (error:any) {
+        console.log(error)
+      })
+  } 
 
   const renderTree = (nodes: RenderTree) => (
     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
@@ -110,7 +136,7 @@ export const PetDetailView = () => {
           }
         })}
       >
-        <Link href='/sign-in' underline='none'>
+        <Link href='/' underline='none'>
           VOLVER
         </Link>
         <Grid
@@ -152,6 +178,7 @@ export const PetDetailView = () => {
 
               <Stack spacing={2}>
                 <Button
+                  onClick={handleAdopt}
                   variant='contained'
                   sx={(theme) => ({
                     width: '100%',

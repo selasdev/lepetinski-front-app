@@ -7,13 +7,14 @@ export const CancelAdoptModal = ({ open, id, handleClose }: IFilters) => {
   const navigate = useNavigate()
 
   const handleCancel = () => {
+    console.log(id)
     const config = {
       headers: { 
           'Access-Control-Allow-Origin' : '*',
           'Access-Control-Allow-Methods' : '*'
       }
     } 
-    axios.delete(`https://t00e9m.deta.dev/adopcion/${id}`, config)
+    axios.delete(`https://t00e9m.deta.dev/post/${id}`, config)
       .then(function (response:any) {
         navigate('/profile')
       })
@@ -42,7 +43,7 @@ export const CancelAdoptModal = ({ open, id, handleClose }: IFilters) => {
             fontSize: '24px'
           })}
         >
-          ¿Quieres cancelar la adopción?
+          ¿Quieres cancelar la Publicacion?
         </DialogContentText>
         <DialogContentText
           id='alert-dialog-description'
