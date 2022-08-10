@@ -17,7 +17,7 @@ const StartSizeView = (): JSX.Element => {
       <Grid container spacing={4}>
         {MockCardTextSizes.map(({ text, link }, index) => (
           <Grid item xs={6} sm={3} md={4} lg={4}>
-            <CardText key={`${index}_text`} link={link} text={text} />
+            <CardText key={`${index}_text`} link={`/start/${category}/${race}/${index+1}`} text={text} />
           </Grid>
         ))}
       </Grid>

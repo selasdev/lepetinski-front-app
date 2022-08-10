@@ -59,7 +59,7 @@ const StartLocationView = (): JSX.Element => {
           variant='contained'
           color='primary'
           size='large'
-          href={`/search?category=${category}&race=${race}&size=${size}&distance=${distance}&age=${age}`}
+          href={`/search/${category}/${race}/${size}`}
         >
           ¡MUÉSTRAME!
         </Button>

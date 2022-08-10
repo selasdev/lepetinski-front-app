@@ -21,13 +21,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
+import axios from 'axios'
 
 export const PetDetailView = () => {
   const petFilters =
     // eslint-disable-next-line no-useless-concat
     mockData.petAge + ' años' + ' - ' + mockData.petGender + ' - ' + mockData.petRace
-
+    
+  const { id } = useParams();
+  
   const theme = useTheme()
   const matchesSm = useMediaQuery(theme.breakpoints.up('sm'))
 
@@ -50,6 +54,42 @@ export const PetDetailView = () => {
     ])
     setQuestion('')
   }
+
+  const [post, setPost] = useState({
+    descripcion: '',
+    mascota: {
+      foto_url: '',
+      nombre: '',
+      edad: 0,
+      info_salud: ''
+    },
+    usuario: {
+      nombre: '',
+      ciudad: ''
+    }
+  })
+
+  useEffect(() => {
+    const config = {
+      headers: { 
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods' : '*'
+      }
+    } 
+    axios.get('https://t00e9m.deta.dev/post/'+id, config)
+      .then(function (response:any) {
+        setPost(response.data)
+      })
+      .catch(function (error:any) {
+        console.log(error)
+      })
+      
+  }, [])
+
+  useEffect(() => {
+    console.log(post)
+  }, [post])
+  
 
   const renderTree = (nodes: RenderTree) => (
     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
@@ -84,7 +124,7 @@ export const PetDetailView = () => {
           })}
         >
           <Grid item lg={6} xs={12}>
-            <StyledImage src={mockData.petImage} alt='pet' />
+            <StyledImage src={post.mascota.foto_url} alt='pet' />
           </Grid>
           <Grid item lg={6} xs={12}>
             <Box
@@ -98,13 +138,14 @@ export const PetDetailView = () => {
               {matchesSm && (
                 <Stack spacing={2}>
                   <Typography variant='h4' fontSize='30px' fontWeight='bold'>
-                    {mockData.petName}
+                    {post.mascota.nombre}
                   </Typography>
 
                   <Stack spacing={1} direction='row'>
-                    {mockData.filters.map((filter) => (
+                  <Chip label={post.mascota.edad + ' años'} color='secondary' />
+                    {/* {mockData.filters.map((filter) => (
                       <Chip label={filter} color='secondary' />
-                    ))}
+                    ))} */}
                   </Stack>
                 </Stack>
               )}
@@ -148,7 +189,7 @@ export const PetDetailView = () => {
                   }
                 })}
               >
-                {mockData.owner} - {mockData.address}
+                {post.usuario.nombre} - {post.usuario.ciudad}
               </Typography>
             )}
             {!matchesSm && (
@@ -159,7 +200,7 @@ export const PetDetailView = () => {
               >
                 <CardContent>
                   <Typography variant='h4' fontSize='24px' fontWeight='bold'>
-                    {mockData.petName}
+                    {post.mascota.nombre}
                   </Typography>
 
                   <Typography variant='body1' fontSize='16px'>
@@ -167,11 +208,11 @@ export const PetDetailView = () => {
                   </Typography>
 
                   <Typography variant='body1' fontSize='16px'>
-                    {mockData.address}
+                    {post.usuario.ciudad}
                   </Typography>
 
                   <Typography variant='body1' fontSize='16px'>
-                    {mockData.owner}
+                    {post.usuario.nombre}
                   </Typography>
                 </CardContent>
               </Card>
@@ -184,7 +225,7 @@ export const PetDetailView = () => {
             >
               <CardContent>
                 <Typography variant='body1' fontSize='16px'>
-                  {mockData.petDescription}
+                  {post.descripcion}
                 </Typography>
               </CardContent>
             </Card>
@@ -198,7 +239,7 @@ export const PetDetailView = () => {
                   Información de salud
                 </Typography>
                 <Typography variant='body1' fontSize='16px' marginTop='16px'>
-                  {mockData.petHealthInfo}
+                  {post.mascota.info_salud}
                 </Typography>
               </CardContent>
             </Card>

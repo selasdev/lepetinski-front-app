@@ -20,13 +20,38 @@ import { CardPet } from '../../components/molecules/Card/CardPet'
 import { ICardPet } from '../../components/molecules/Card/CardPet/types'
 import SearchIcon from '@mui/icons-material/Search'
 import { FiltersView } from './filters/index'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export const SearchView = (): JSX.Element => {
   const { category, race, size } = useParams()
   const theme = useTheme()
   const matchesSm = useMediaQuery(theme.breakpoints.up('sm'))
   const [openFilters, setOpenFilters] = useState<boolean>(false)
+
+  const [mascotas,setMascotas] = useState<Array<any>>([])
+
+  useEffect(() => {
+    const config = {
+      headers: { 
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods' : '*'
+      }
+    } 
+    axios.get('https://t00e9m.deta.dev/mascotas/'+category, config)
+      .then(function (response:any) {
+        setMascotas( () => [...response.data] )
+      })
+      .catch(function (error:any) {
+        console.log(error)
+      })
+      
+  }, [])
+
+  useEffect(() => {
+    console.log(mascotas)
+  }, mascotas)
+
   return (
     <>
       <Navbar />
@@ -68,9 +93,9 @@ export const SearchView = (): JSX.Element => {
         )}
 
         <Grid container spacing={4} marginTop={{ xs: '20px', sm: '40px' }}>
-          {results.map((item: ICardPet, idx) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={item.name + idx}>
-              <CardPet {...item} />
+          {mascotas.map((mascota) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={mascota.id}>
+              <CardPet id={mascota.id} img={mascota.foto_url} name={mascota.nombre} features={[mascota.info_salud, mascota.edad, 'macho']} address='Tachira' origin='1' />
             </Grid>
           ))}
         </Grid>

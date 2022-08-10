@@ -27,8 +27,8 @@ const Navbar = (): JSX.Element => {
 
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const { authenticated } = useAuthenticationProvider()
-
+  const { authenticated, user } = useAuthenticationProvider()
+  
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
@@ -157,7 +157,7 @@ const Navbar = (): JSX.Element => {
             })}
             onClick={handleOpenNavMenu}
           >
-            INICIAR SESIÓN
+            {authenticated ? user?.name : 'INICIAR SESIÓN'} 
           </Button>
           {dropdown}
         </Toolbar>
