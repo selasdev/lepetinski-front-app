@@ -45,10 +45,6 @@ export const SwiperCardList = ({ title, highlight, cards }: ISwiperCardList): JS
       })
   }, [])
 
-  useEffect(() => {
-    console.log(destacados)
-  }, [destacados])
-
   return (
     <MainContainer>
       <MainTitle>

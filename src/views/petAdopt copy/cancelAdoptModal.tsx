@@ -7,7 +7,7 @@ export const CancelAdoptModal = ({ open, id, handleClose }: IFilters) => {
   const navigate = useNavigate()
 
   const handleCancel = () => {
-    console.log(id)
+    
     const config = {
       headers: { 
           'Access-Control-Allow-Origin' : '*',

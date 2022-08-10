@@ -93,7 +93,7 @@ export const PublishForm = ({ onSubmit }: IPublishForm) => {
         "info_salud": healthInfo
       }
     }
-    console.log(data)
+    
     axios.post('https://t00e9m.deta.dev/publicar', data, config)
       .then(function (response:any) {
         // console.log(response)

@@ -29,10 +29,6 @@ const StartRacesView = (): JSX.Element => {
       
   }, [])
 
-  useEffect(() => {
-    console.log(races)
-  }, [races])
-
   return (
     <GuidedStepsTemplate>
       <SecondaryHeader>¿Pensabas en alguna raza específica?</SecondaryHeader>

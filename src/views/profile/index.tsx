@@ -30,7 +30,7 @@ export const ProfileView = () => {
 
     axios.get(`https://t00e9m.deta.dev/usuario/${user?.id}/posts`, config)
     .then(function (response:any) {
-      console.log(response.data)
+      
       setPosts( () => [...response.data] )
     })
     .catch(function (error:any) {
