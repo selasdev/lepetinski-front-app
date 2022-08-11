@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { IAnimalCard } from "../../../../types/cards";
 import {
   AnimalImage,
@@ -14,8 +15,14 @@ export const CardAnimal = ({
   altDescription,
   url,
 }: IAnimalCard) => {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate(`/pet-detail/${url}`)
+  }
+
   return (
-    <StyledLink to={url as string}>
+    <StyledLink to={`/pet-detail/${url}`}>
       <MainCardContainer>
         <AnimalImage src={imgSrc} alt="An animal" />
         <Title>{title}</Title>

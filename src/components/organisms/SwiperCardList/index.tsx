@@ -6,6 +6,7 @@ import { CardAnimal } from '../../molecules/Card/CardAnimal'
 import 'swiper/css'
 import './index.css'
 import axios from 'axios'
+import { Skeleton } from '@mui/material'
 
 interface ISwiperCardList {
   title?: string
@@ -28,6 +29,7 @@ const breakpoints = {
 export const SwiperCardList = ({ title, highlight, cards }: ISwiperCardList): JSX.Element => {
 
   const [destacados, setDestacados] = useState<Array<any>>([])
+  const [loader, setLoader] = useState<Boolean>(false)
 
   useEffect(() => {
     const config = {
@@ -39,6 +41,7 @@ export const SwiperCardList = ({ title, highlight, cards }: ISwiperCardList): JS
     axios.get('https://t00e9m.deta.dev/destacados', config)
       .then(function (response:any) {
         setDestacados( () => [...response.data] )
+        setLoader(true)
       })
       .catch(function (error:any) {
         console.log(error)
@@ -60,12 +63,14 @@ export const SwiperCardList = ({ title, highlight, cards }: ISwiperCardList): JS
         spaceBetween={16}
         breakpoints={breakpoints}
       >
-        {destacados &&
-          destacados.map((dest) => (
+        {loader 
+           ? destacados.map((dest) => (
             <SwiperSlide key={dest.id}>
-              <CardAnimal imgSrc={'https://www.bunko.pet/__export/1618340921377/sites/debate/img/2021/04/13/beagle-pequexo-parado_crop1618340487400.jpg_581755604.jpg'} title={'bolt'} mainDescription={dest.descripcion} altDescription={dest.celular_contacto} url={'1'} />
+              <CardAnimal imgSrc={dest.mascota.foto_url} title={dest.mascota.nombre} mainDescription={`${dest.descripcion} ${dest.mascota.edad} años`} altDescription={dest.usuario.ciudad} url={dest.id} />
             </SwiperSlide>
-          ))}
+            ))
+          : <Skeleton variant="rectangular" sx={{ height: '40vh', borderRadius: '10px' }}/>
+        }
       </Swiper>
     </MainContainer>
   )

@@ -1,4 +1,4 @@
-import { Box, Button, Link } from '@mui/material'
+import { Box, Button, Link, Skeleton } from '@mui/material'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
@@ -11,7 +11,7 @@ export const PetPostView = () => {
   const [openCancelAdoptionModal, setOpenCancelAdoptionModal] = useState<boolean>(false)
 
   const {idpost} = useParams();
-
+  const [loader, setLoader] = useState<Boolean>(false)
   const idAdop = idpost ? idpost : '0'
 
   const [post, setPost] = useState({
@@ -41,6 +41,7 @@ export const PetPostView = () => {
     axios.get('https://t00e9m.deta.dev/post/'+idpost, config)
       .then(function (response:any) {
         setPost(response.data)
+        setLoader(true)
       })
       .catch(function (error:any) {
         console.log(error)
@@ -56,20 +57,23 @@ export const PetPostView = () => {
           {' '}
           VOLVER
         </Link>
-        <Box maxWidth='500px' margin='25px auto 0'>
-          <CardAdopt img={post.mascota.foto_url} owner={post.usuario.nombre} phoneNumber={post.celular_contacto} address={post.usuario.ciudad} email={post.usuario.email} />
-          <Button
-            onClick={() => setOpenCancelAdoptionModal(true)}
-            variant='contained'
-            fullWidth
-            color='error'
-            sx={() => ({
-              marginTop: '25px'
-            })}
-          >
-            CANCELAR PUBLICACION
-          </Button>
-        </Box>
+        {loader
+          ? <Box maxWidth='500px' margin='25px auto 0'>
+            <CardAdopt img={post.mascota.foto_url} owner={post.usuario.nombre} phoneNumber={post.celular_contacto} address={post.usuario.ciudad} email={post.usuario.email} />
+            <Button
+              onClick={() => setOpenCancelAdoptionModal(true)}
+              variant='contained'
+              fullWidth
+              color='error'
+              sx={() => ({
+                marginTop: '25px'
+              })}
+            >
+              CANCELAR PUBLICACION
+            </Button>
+          </Box>
+          : <Skeleton variant="rectangular" sx={{  width: '100%', height: '40vh', borderRadius: '10px' }}/>
+        }
       </Box>
       <CancelAdoptModal
         open={openCancelAdoptionModal}

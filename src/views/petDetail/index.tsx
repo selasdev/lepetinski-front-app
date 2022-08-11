@@ -7,6 +7,7 @@ import {
   FormControl,
   Grid,
   Link,
+  Skeleton,
   Stack,
   TextField,
   Typography
@@ -39,7 +40,7 @@ export const PetDetailView = () => {
   const matchesSm = useMediaQuery(theme.breakpoints.up('sm'))
 
   const [questions, setQuestions] = useState<Array<RenderTree>>([])
-
+  const [loader, setLoader] = useState<Boolean>(false)
   const [question, setQuestion] = useState('')
 
   const handleChangeQuestion = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,6 +84,7 @@ export const PetDetailView = () => {
     axios.get('https://t00e9m.deta.dev/post/'+id, config)
       .then(function (response:any) {
         setPost(response.data)
+        setLoader(true)
       })
       .catch(function (error:any) {
         console.log(error)
@@ -90,9 +92,9 @@ export const PetDetailView = () => {
       
   }, [])
 
-  // useEffect(() => {
-  //   console.log(post)
-  // }, [post])
+  useEffect(() => {
+    console.log(post)
+  }, [post])
   
   const handleAdopt = () => {
     const config = {
@@ -139,171 +141,174 @@ export const PetDetailView = () => {
         <Link href='/' underline='none'>
           VOLVER
         </Link>
-        <Grid
-          direction={{ xs: 'column', lg: 'row' }}
-          container
-          columnSpacing={5}
-          sx={(theme) => ({
-            [theme.breakpoints.up('sm')]: {
-              marginTop: '30px'
-            }
-          })}
-        >
-          <Grid item lg={6} xs={12}>
-            <StyledImage src={post.mascota.foto_url} alt='pet' />
-          </Grid>
-          <Grid item lg={6} xs={12}>
-            <Box
-              sx={(theme) => ({
-                [theme.breakpoints.up('sm')]: {
-                  display: 'flex',
-                  justifyContent: 'space-between'
-                }
-              })}
-            >
-              {matchesSm && (
-                <Stack spacing={2}>
-                  <Typography variant='h4' fontSize='30px' fontWeight='bold'>
-                    {post.mascota.nombre}
-                  </Typography>
-
-                  <Stack spacing={1} direction='row'>
-                  <Chip label={post.mascota.edad + ' años'} color='secondary' />
-                    {/* {mockData.filters.map((filter) => (
-                      <Chip label={filter} color='secondary' />
-                    ))} */}
-                  </Stack>
-                </Stack>
-              )}
-
-              <Stack spacing={2}>
-                <Button
-                  onClick={handleAdopt}
-                  variant='contained'
-                  sx={(theme) => ({
-                    width: '100%',
-                    [theme.breakpoints.up('sm')]: {
-                      width: 'fit-content'
-                    }
-                  })}
-                >
-                  ADOPTAR
-                </Button>
-
+        {loader
+          ?  <Grid
+            direction={{ xs: 'column', lg: 'row' }}
+            container
+            columnSpacing={5}
+            sx={(theme) => ({
+              [theme.breakpoints.up('sm')]: {
+                marginTop: '30px'
+              }
+            })}
+          >
+            <Grid item lg={6} xs={12}>
+              <StyledImage src={post.mascota.foto_url} alt='pet' />
+            </Grid>
+            <Grid item lg={6} xs={12}>
+              <Box
+                sx={(theme) => ({
+                  [theme.breakpoints.up('sm')]: {
+                    display: 'flex',
+                    justifyContent: 'space-between'
+                  }
+                })}
+              >
                 {matchesSm && (
+                  <Stack spacing={2}>
+                    <Typography variant='h4' fontSize='30px' fontWeight='bold'>
+                      {post.mascota.nombre}
+                    </Typography>
+
+                    <Stack spacing={1} direction='row'>
+                    <Chip label={post.mascota.edad + ' años'} color='secondary' />
+                      {/* {mockData.filters.map((filter) => (
+                        <Chip label={filter} color='secondary' />
+                      ))} */}
+                    </Stack>
+                  </Stack>
+                )}
+
+                <Stack spacing={2}>
                   <Button
-                    color='info'
+                    onClick={handleAdopt}
                     variant='contained'
                     sx={(theme) => ({
+                      width: '100%',
                       [theme.breakpoints.up('sm')]: {
                         width: 'fit-content'
                       }
                     })}
                   >
-                    GUARDAR
+                    ADOPTAR
                   </Button>
-                )}
-              </Stack>
-            </Box>
-            {matchesSm && (
-              <Typography
-                variant='body1'
-                fontSize='16px'
-                marginTop='36px'
-                sx={(theme) => ({
-                  [theme.breakpoints.up('sm')]: {
-                    fontWeight: '600'
-                  }
-                })}
-              >
-                {post.usuario.nombre} - {post.usuario.ciudad}
-              </Typography>
-            )}
-            {!matchesSm && (
+
+                  {matchesSm && (
+                    <Button
+                      color='info'
+                      variant='contained'
+                      sx={(theme) => ({
+                        [theme.breakpoints.up('sm')]: {
+                          width: 'fit-content'
+                        }
+                      })}
+                    >
+                      GUARDAR
+                    </Button>
+                  )}
+                </Stack>
+              </Box>
+              {matchesSm && (
+                <Typography
+                  variant='body1'
+                  fontSize='16px'
+                  marginTop='36px'
+                  sx={(theme) => ({
+                    [theme.breakpoints.up('sm')]: {
+                      fontWeight: '600'
+                    }
+                  })}
+                >
+                  {post.usuario.nombre} - {post.usuario.ciudad}
+                </Typography>
+              )}
+              {!matchesSm && (
+                <Card
+                  sx={() => ({
+                    marginTop: '23px'
+                  })}
+                >
+                  <CardContent>
+                    <Typography variant='h4' fontSize='24px' fontWeight='bold'>
+                      {post.mascota.nombre}
+                    </Typography>
+
+                    <Typography variant='body1' fontSize='16px'>
+                      {petFilters}
+                    </Typography>
+
+                    <Typography variant='body1' fontSize='16px'>
+                      {post.usuario.ciudad}
+                    </Typography>
+
+                    <Typography variant='body1' fontSize='16px'>
+                      {post.usuario.nombre}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              )}
+
               <Card
                 sx={() => ({
                   marginTop: '23px'
                 })}
               >
                 <CardContent>
-                  <Typography variant='h4' fontSize='24px' fontWeight='bold'>
-                    {post.mascota.nombre}
-                  </Typography>
-
                   <Typography variant='body1' fontSize='16px'>
-                    {petFilters}
-                  </Typography>
-
-                  <Typography variant='body1' fontSize='16px'>
-                    {post.usuario.ciudad}
-                  </Typography>
-
-                  <Typography variant='body1' fontSize='16px'>
-                    {post.usuario.nombre}
+                    {post.descripcion}
                   </Typography>
                 </CardContent>
               </Card>
-            )}
-
-            <Card
-              sx={() => ({
-                marginTop: '23px'
-              })}
-            >
-              <CardContent>
-                <Typography variant='body1' fontSize='16px'>
-                  {post.descripcion}
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card
-              sx={() => ({
-                marginTop: '23px'
-              })}
-            >
-              <CardContent>
-                <Typography variant='h4' fontSize='20px'>
-                  Información de salud
-                </Typography>
-                <Typography variant='body1' fontSize='16px' marginTop='16px'>
-                  {post.mascota.info_salud}
-                </Typography>
-              </CardContent>
-            </Card>
-            <Typography variant='h4' fontSize='24px' margin='34px 0 14px'>
-              Haz una pregunta
-            </Typography>
-            <FormControl fullWidth>
-              <TextField
-                value={question}
-                id='question'
-                label='Escribe tu pregunta'
-                variant='outlined'
-                onChange={handleChangeQuestion}
-              />
-            </FormControl>
-            <Button
-              variant='contained'
-              sx={() => ({
-                margin: '25px 0 36px'
-              })}
-              onClick={() => {
-                handleClick()
-              }}
-            >
-              PREGUNTAR
-            </Button>
-            {questions.map((item: RenderTree) => (
-              <TreeView
-                aria-label='rich object'
-                defaultCollapseIcon={<ExpandMoreIcon />}
-                defaultExpandIcon={<ChevronRightIcon />}
+              <Card
+                sx={() => ({
+                  marginTop: '23px'
+                })}
               >
-                {renderTree(item)}
-              </TreeView>
-            ))}
+                <CardContent>
+                  <Typography variant='h4' fontSize='20px'>
+                    Información de salud
+                  </Typography>
+                  <Typography variant='body1' fontSize='16px' marginTop='16px'>
+                    {post.mascota.info_salud}
+                  </Typography>
+                </CardContent>
+              </Card>
+              <Typography variant='h4' fontSize='24px' margin='34px 0 14px'>
+                Haz una pregunta
+              </Typography>
+              <FormControl fullWidth>
+                <TextField
+                  value={question}
+                  id='question'
+                  label='Escribe tu pregunta'
+                  variant='outlined'
+                  onChange={handleChangeQuestion}
+                />
+              </FormControl>
+              <Button
+                variant='contained'
+                sx={() => ({
+                  margin: '25px 0 36px'
+                })}
+                onClick={() => {
+                  handleClick()
+                }}
+              >
+                PREGUNTAR
+              </Button>
+              {questions.map((item: RenderTree) => (
+                <TreeView
+                  aria-label='rich object'
+                  defaultCollapseIcon={<ExpandMoreIcon />}
+                  defaultExpandIcon={<ChevronRightIcon />}
+                >
+                  {renderTree(item)}
+                </TreeView>
+              ))}
+            </Grid>
           </Grid>
-        </Grid>
+          : <Skeleton variant="rectangular" sx={{  width: '100%', height: '70vh', borderRadius: '10px' }}/>
+        }
       </Box>
     </>
   )
