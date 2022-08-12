@@ -26,7 +26,7 @@ const Routes = () => {
         <Route path='/start/:category' element={<StartRacesView />} />
         <Route path='/start/:category/:race' element={<StartSizeView />} />
         <Route path='/start/:category/:race/:size' element={<StartLocationView />} />
-        <Route path='/search/:category/:race/:size' element={<SearchView />} />
+        <Route path='/search' element={<SearchView />} />
         <Route path='/pet-detail' element={<PetDetailView />} />
         <Route path='/profile' element={<ProfileView />} />
         <Route path='/pet-adopt' element={<PetAdoptView />} />

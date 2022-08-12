@@ -44,7 +44,14 @@ export const CancelAdoptModal = ({ open, handleClose }: IFilters) => {
           >
             NO quiero CANCELAR
           </Button>
-          <Button onClick={handleClose} autoFocus fullWidth variant='contained' color='error'>
+          <Button
+            onClick={handleClose}
+            autoFocus
+            fullWidth
+            variant='contained'
+            color='error'
+            href='/profile'
+          >
             CANCELAR
           </Button>
         </Stack>
