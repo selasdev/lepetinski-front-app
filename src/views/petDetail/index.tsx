@@ -70,7 +70,7 @@ export const PetDetailView = () => {
           }
         })}
       >
-        <Link href='/sign-in' underline='none'>
+        <Link href='/search' underline='none'>
           VOLVER
         </Link>
         <Grid
