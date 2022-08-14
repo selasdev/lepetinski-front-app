@@ -6,12 +6,12 @@ import { CardAdopt } from '../../components/molecules/Card/CardAdopt'
 import Navbar from '../../components/organisms/Navbar'
 import { CancelAdoptModal } from './cancelAdoptModal'
 
-export const PetAdoptView = () => {
+export const PetPostView = () => {
   const [openCancelAdoptionModal, setOpenCancelAdoptionModal] = useState<boolean>(false)
 
-  const { id , idpost} = useParams();
+  const {idpost} = useParams();
   const [loader, setLoader] = useState<Boolean>(false)
-  const idAdop = id ? id : '0'
+  const idAdop = idpost ? idpost : '0'
 
   const [post, setPost] = useState({
     descripcion: '',
@@ -46,7 +46,7 @@ export const PetAdoptView = () => {
         console.log(error)
       })
       
-  }, [idpost])
+  },[idpost])
 
   return (
     <>
@@ -57,20 +57,19 @@ export const PetAdoptView = () => {
           VOLVER
         </Link>
         {loader
-            ?  
-          <Box maxWidth='500px' margin='25px auto 0'>
+          ? <Box maxWidth='500px' margin='25px auto 0'>
             <CardAdopt img={post.mascota.foto_url} owner={post.usuario.nombre} phoneNumber={post.celular_contacto} address={post.usuario.ciudad} email={post.usuario.email} />
-              <Button
-                onClick={() => setOpenCancelAdoptionModal(true)}
-                variant='contained'
-                fullWidth
-                color='error'
-                sx={() => ({
-                  marginTop: '25px'
-                })}
-              >
-                CANCELAR ADOPCIÓN
-              </Button>
+            <Button
+              onClick={() => setOpenCancelAdoptionModal(true)}
+              variant='contained'
+              fullWidth
+              color='error'
+              sx={() => ({
+                marginTop: '25px'
+              })}
+            >
+              CANCELAR PUBLICACION
+            </Button>
           </Box>
           : <Skeleton variant="rectangular" sx={{  width: '100%', height: '40vh', borderRadius: '10px' }}/>
         }

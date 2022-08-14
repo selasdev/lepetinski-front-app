@@ -12,5 +12,6 @@ export interface IFiltersForm {
 
 export interface IFilters {
   open: boolean
+  id: string
   handleClose: () => void
 }

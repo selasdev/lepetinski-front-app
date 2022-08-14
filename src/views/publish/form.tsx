@@ -10,7 +10,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import axios from "axios";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { useAuthenticationProvider } from "../../contexts/Auth/context";
 import { FormBox, PetImage } from "./index.styles";
 
 interface IPublishFormValues {
@@ -38,22 +41,103 @@ export const PublishForm = ({ onSubmit }: IPublishForm) => {
   const [description, setDescription] = useState<string>("");
   const [healthInfo, setHealthInfo] = useState<string>("");
   const [contactPhone, setContactPhone] = useState<string>("");
+  const [genre, setGenre] = useState<string>('');
   const [imgUrl, setImgUrl] = useState<string>("");
+  const { user } = useAuthenticationProvider();
+  const navigate = useNavigate()
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit({
-      name,
-      category,
-      race,
-      size,
-      age,
-      description,
-      healthInfo,
-      contactPhone,
-      imgUrl,
-    });
+    // onSubmit({
+    //   name,
+    //   category,
+    //   race,
+    //   size,
+    //   age,
+    //   description,
+    //   healthInfo,
+    //   contactPhone,
+    //   imgUrl,
+    // });
+    // console.log({
+    //     name,
+    //     category,
+    //     race,
+    //     size,
+    //     age,
+    //     description,
+    //     healthInfo,
+    //     contactPhone,
+    //     imgUrl,
+    //   })
+    // console.log(user)
+
+    const config = {
+      headers: { 
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods' : '*'
+      }
+    }
+    const data = {
+      "celular_contacto": contactPhone,
+      "descripcion": description,
+      "usuario_id": user?.id,
+      "raza_id": race,
+      "mascota": {
+        "nombre": name,
+        "edad": parseInt(age, 10),
+        "tipo_id": category,
+        "genero": genre,
+        "medida": size,
+        "foto_url": imgUrl,
+        "info_salud": healthInfo
+      }
+    }
+    
+    axios.post('https://t00e9m.deta.dev/publicar', data, config)
+      .then(function (response:any) {
+        // console.log(response)
+        navigate(`/`)
+      })
+      .catch(function (error:any) {
+        console.log(error)
+      })
   };
+
+  const [categories, setCategories] = useState<Array<any>>([])
+  const [races, setRaces] = useState<Array<any>>([])
+
+  useEffect(() => {
+    const config = {
+      headers: { 
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods' : '*'
+      }
+    } 
+    axios.get('https://t00e9m.deta.dev/tipos', config)
+      .then(function (response:any) {
+        setCategories( () => [...response.data] )
+      })
+      .catch(function (error:any) {
+        console.log(error)
+      })
+  }, [])
+
+  useEffect(() => {
+    const config = {
+      headers: { 
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods' : '*'
+      }
+    } 
+    axios.get('https://t00e9m.deta.dev/razas/'+category, config)
+      .then(function (response:any) {
+        setRaces( () => [...response.data] )
+      })
+      .catch(function (error:any) {
+        console.log(error)
+      })
+  }, [category])
 
   return (
     <FormBox>
@@ -91,10 +175,11 @@ export const PublishForm = ({ onSubmit }: IPublishForm) => {
                   setCategory(e.target.value);
                 }}
               >
-                <MenuItem value={"dog"}>Perro</MenuItem>
-                <MenuItem value={"cat"}>Gato</MenuItem>
-                <MenuItem value={"bird"}>Ave</MenuItem>
-                <MenuItem value={"hamster"}>Hamster</MenuItem>
+                {categories.map(cat => (
+                  <MenuItem key={`${cat.id}_text`} value={cat.id}>{cat.nombre}</MenuItem>
+                ))
+
+                }
               </Select>
             </FormControl>
           </Grid>
@@ -111,10 +196,10 @@ export const PublishForm = ({ onSubmit }: IPublishForm) => {
                   setRace(e.target.value);
                 }}
               >
-                <MenuItem value={"small"}>Mestizo</MenuItem>
-                <MenuItem value={"small"}>Rottweiler</MenuItem>
-                <MenuItem value={"medium"}>Pitbull</MenuItem>
-                <MenuItem value={"big"}>Chihuahua</MenuItem>
+                {races.map(race => (
+                  <MenuItem key={`${race.id}_text`} value={race.id}>{race.nombre}</MenuItem>
+                ))
+                }
               </Select>
             </FormControl>
           </Grid>
@@ -131,9 +216,27 @@ export const PublishForm = ({ onSubmit }: IPublishForm) => {
                   setSize(e.target.value);
                 }}
               >
-                <MenuItem value={"small"}>Pequeño</MenuItem>
-                <MenuItem value={"medium"}>Mediano</MenuItem>
-                <MenuItem value={"big"}>Grande</MenuItem>
+                <MenuItem value={20}>Pequeño</MenuItem>
+                <MenuItem value={45}>Mediano</MenuItem>
+                <MenuItem value={65}>Grande</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+          <FormControl fullWidth>
+              <InputLabel id="genre-label">Genero</InputLabel>
+              <Select
+                required
+                labelId="genre-label"
+                id="genre"
+                value={genre}
+                label="Genero"
+                onChange={(e: SelectChangeEvent<string>) => {
+                  setGenre(e.target.value);
+                }}
+              >
+                <MenuItem value={0}>Macho</MenuItem>
+                <MenuItem value={1}>Hembra</MenuItem>
               </Select>
             </FormControl>
           </Grid>

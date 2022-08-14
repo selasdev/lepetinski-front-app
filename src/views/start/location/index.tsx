@@ -20,12 +20,14 @@ const StartLocationView = (): JSX.Element => {
 
   const onDistanceChange = (_: any, value: number | number[]) => {
     setDistance(value as number)
+    console.log(distance)
   }
 
   const onAgeChange = (_: any, value: number | number[]) => {
     setAge(value as number)
   }
 
+  
   return (
     <GuidedStepsTemplate>
       <SecondaryHeader>¿Qué tan cerca de tí está?</SecondaryHeader>
@@ -59,7 +61,7 @@ const StartLocationView = (): JSX.Element => {
           variant='contained'
           color='primary'
           size='large'
-          href={`/search?category=${category}&race=${race}&size=${size}&distance=${distance}&age=${age}`}
+          href={`/search/${category}/${race}/${size}/${age}`}
         >
           ¡MUÉSTRAME!
         </Button>

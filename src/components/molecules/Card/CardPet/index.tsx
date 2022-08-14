@@ -1,6 +1,6 @@
 import { Card, CardMedia, CardContent, Typography, Stack, Box } from '@mui/material'
 import { ICardPet } from './types'
-import { useLocation, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 import { useState } from 'react'
 import styled from 'styled-components'
 import { SavedPetDialog } from './dialog'
@@ -12,33 +12,47 @@ const StyledCard = styled(Card)`
   cursor: pointer;
 `
 
-export const CardPet = ({ img, name, features, address, saved = false }: ICardPet): JSX.Element => {
-  const navigate = useNavigate()
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false)
-  const location = useLocation()
+export const CardPet = ({
+  id,
+  idpost,
+  img,
+  name,
+  features,
+  address,
+  saved = false,
+  origin
+}: ICardPet): JSX.Element => {
+  const navigate = useNavigate();
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
-  const cardClickCallback = () => {
-    setDialogOpen(true)
+  // const cardClickCallback = () => {
+  //   setDialogOpen(true)
 
-    if (!saved) {
-      switch (location.pathname) {
-        case '/profile':
-          navigate('/pet-adopt')
-          break
-        case '/search':
-          navigate('/pet-detail')
-          break
-        default:
-          break
-      }
-    } else {
-      setDialogOpen(true)
-    }
+  //   if (!saved) {
+  //     switch (location.pathname) {
+  //       case '/profile':
+  //         navigate('/pet-adopt')
+  //         break
+  //       case '/search':
+  //         navigate('/pet-detail')
+  //         break
+  //       default:
+  //         break
+  //     }
+  //   } else {
+  //     setDialogOpen(true)
+  //   }
+  // };
+
+  const handleClick = () => {
+    if(origin === '1') navigate(`/pet-detail/${id}`)
+    else if(origin ==='0') navigate(`/pet-adopt/${id}/${idpost}`)
+    else navigate(`/pet-post/${idpost}`)
   }
 
   return (
     <>
-      <StyledCard onClick={cardClickCallback}>
+      <StyledCard onClick={handleClick}>
         <CardContent>
           <CardMedia
             component='img'

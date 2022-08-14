@@ -13,6 +13,7 @@ import { ProfileView } from '../views/profile'
 import { PetAdoptView } from '../views/petAdopt'
 import { PublishView } from '../views/publish'
 import { FinishAdoptView } from '../views/finishAdopt'
+import { PetPostView } from '../views/petAdopt copy'
 
 const Routes = () => {
   return (
@@ -26,12 +27,12 @@ const Routes = () => {
         <Route path='/start/:category' element={<StartRacesView />} />
         <Route path='/start/:category/:race' element={<StartSizeView />} />
         <Route path='/start/:category/:race/:size' element={<StartLocationView />} />
-        <Route path='/search' element={<SearchView />} />
-        <Route path='/pet-detail' element={<PetDetailView />} />
+        <Route path='/search/:category/:race/:size/:age' element={<SearchView />} />
+        <Route path='/pet-detail/:id' element={<PetDetailView />} />
         <Route path='/profile' element={<ProfileView />} />
-        <Route path='/pet-adopt' element={<PetAdoptView />} />
-        <Route path='/finish-adopt' element={<FinishAdoptView />} />
-
+        <Route path='/pet-adopt/:id/:idpost' element={<PetAdoptView />} />
+        <Route path='/finish-adopt/:id' element={<FinishAdoptView />} />
+        <Route path='/pet-post/:idpost' element={<PetPostView />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </RouterRoutes>
     </BrowserRouter>

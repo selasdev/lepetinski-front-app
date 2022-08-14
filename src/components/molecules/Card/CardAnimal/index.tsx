@@ -14,8 +14,9 @@ export const CardAnimal = ({
   altDescription,
   url,
 }: IAnimalCard) => {
+  
   return (
-    <StyledLink to={url as string}>
+    <StyledLink to={`/pet-detail/${url}`}>
       <MainCardContainer>
         <AnimalImage src={imgSrc} alt="An animal" />
         <Title>{title}</Title>
