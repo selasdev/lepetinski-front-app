@@ -47,7 +47,7 @@ export const PetAdoptView = () => {
         console.log(error)
       })
       
-  }, [])
+  }, [idpost])
 
   return (
     <>

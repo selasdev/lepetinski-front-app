@@ -2,10 +2,8 @@ import { Box, Card, CardContent, Grid, Skeleton, Typography } from "@mui/materia
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { CardPet } from "../../components/molecules/Card/CardPet";
-import { ICardPet } from "../../components/molecules/Card/CardPet/types";
 import Navbar from "../../components/organisms/Navbar";
 import { useAuthenticationProvider } from "../../contexts/Auth/context";
-import { results } from "../search/__mocks__/data";
 
 export const ProfileView = () => {
   const { user } = useAuthenticationProvider();
@@ -37,11 +35,7 @@ export const ProfileView = () => {
         console.log(error)
       })    
       
-  }, [])
-
-  // useEffect(() => {
-  //   console.log(adopciones)
-  // }, [adopciones])
+  },[user?.id])
 
   return (
     <>

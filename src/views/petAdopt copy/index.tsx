@@ -5,7 +5,6 @@ import { useParams } from 'react-router'
 import { CardAdopt } from '../../components/molecules/Card/CardAdopt'
 import Navbar from '../../components/organisms/Navbar'
 import { CancelAdoptModal } from './cancelAdoptModal'
-import { data } from './__mocks__/data'
 
 export const PetPostView = () => {
   const [openCancelAdoptionModal, setOpenCancelAdoptionModal] = useState<boolean>(false)
@@ -47,7 +46,7 @@ export const PetPostView = () => {
         console.log(error)
       })
       
-  }, [])
+  },[idpost])
 
   return (
     <>

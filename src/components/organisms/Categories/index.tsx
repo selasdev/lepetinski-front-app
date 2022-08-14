@@ -3,7 +3,6 @@ import {
   StyledCategoriesTitle,
 } from "./index.styles";
 import { CardIcon, ICardIcon } from "../../molecules/Card/CardIcon/index";
-import { CategoriesData } from "./__mocks__/data";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Skeleton } from "@mui/material";
@@ -32,7 +31,7 @@ export const Categories = (): JSX.Element => {
         console.log(error)
       })
       
-  }, [])
+  })
   
   return (
     <>

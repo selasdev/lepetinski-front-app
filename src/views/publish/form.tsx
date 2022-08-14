@@ -216,9 +216,9 @@ export const PublishForm = ({ onSubmit }: IPublishForm) => {
                   setSize(e.target.value);
                 }}
               >
-                <MenuItem value={1}>Pequeño</MenuItem>
-                <MenuItem value={2}>Mediano</MenuItem>
-                <MenuItem value={3}>Grande</MenuItem>
+                <MenuItem value={20}>Pequeño</MenuItem>
+                <MenuItem value={45}>Mediano</MenuItem>
+                <MenuItem value={65}>Grande</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -235,8 +235,8 @@ export const PublishForm = ({ onSubmit }: IPublishForm) => {
                   setGenre(e.target.value);
                 }}
               >
-                <MenuItem value={1}>Macho</MenuItem>
-                <MenuItem value={2}>Hembra</MenuItem>
+                <MenuItem value={0}>Macho</MenuItem>
+                <MenuItem value={1}>Hembra</MenuItem>
               </Select>
             </FormControl>
           </Grid>

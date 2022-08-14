@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import Navbar from '../../components/organisms/Navbar'
-import { mockData } from '../petDetail/data'
 import { StyledImage } from '../petDetail/index.styles'
 
 export const FinishAdoptView = () => {
@@ -43,7 +42,7 @@ export const FinishAdoptView = () => {
         console.log(error)
       })
       
-  }, [])
+  }, [id])
 
   return (
     <>

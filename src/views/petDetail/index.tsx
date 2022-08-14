@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   Box,
   Button,
@@ -33,7 +34,7 @@ export const PetDetailView = () => {
     mockData.petAge + ' años' + ' - ' + mockData.petGender + ' - ' + mockData.petRace
     
   const { id } = useParams();
-  const { authenticated, user } = useAuthenticationProvider()
+  const { user } = useAuthenticationProvider()
   const navigate = useNavigate()
 
   const theme = useTheme()
@@ -66,13 +67,17 @@ export const PetDetailView = () => {
       foto_url: '',
       nombre: '',
       edad: 0,
-      info_salud: ''
+      info_salud: '',
+      tipo_id: 1,
+      medida: 0
     },
     usuario: {
       nombre: '',
       ciudad: ''
     }
   })
+  const [tagcategory, setTagcategory] = useState<string>('')
+  const [tagsize, setTagsize] = useState<string>('')
 
   useEffect(() => {
     const config = {
@@ -90,10 +95,38 @@ export const PetDetailView = () => {
         console.log(error)
       })
       
-  }, [])
+  },[id])
 
   useEffect(() => {
-    console.log(post)
+    switch (post.mascota.tipo_id) {
+      case 1:
+        setTagcategory('Perro')
+        break;
+    
+      case 2:
+        setTagcategory('Gato')
+        break;
+      case 3:
+        setTagcategory('Ave')
+        break;
+      case 4:
+        setTagcategory('Hamster')
+        break;        
+    }
+
+    
+    if(post.mascota.medida <= 20){
+      setTagsize('Pequeño')
+    }
+  
+    else if((20 < post.mascota.medida) && (post.mascota.medida <= 45)){
+      setTagsize('Mediano')
+    }
+  
+    else if(post.mascota.medida > 45){
+      setTagsize('Grande')
+    }
+    
   }, [post])
   
   const handleAdopt = () => {
@@ -171,6 +204,8 @@ export const PetDetailView = () => {
                     </Typography>
 
                     <Stack spacing={1} direction='row'>
+                    <Chip label={tagcategory} color='secondary' />
+                    <Chip label={tagsize} color='secondary' />
                     <Chip label={post.mascota.edad + ' años'} color='secondary' />
                       {/* {mockData.filters.map((filter) => (
                         <Chip label={filter} color='secondary' />

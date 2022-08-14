@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import { GuidedStepsTemplate } from "../../../templates/GuidedSteps";
 import { SecondaryHeader } from "../index.styles";
 import { CardText } from "../../../components/molecules/Card/CardText";
-import { MockCardTextRaces } from "../../../components/molecules/Card/CardText/__mocks__/data";
 import { Grid, Skeleton } from "@mui/material";
 import axios from "axios";
 
@@ -29,7 +28,7 @@ const StartRacesView = (): JSX.Element => {
         console.log(error)
       })
       
-  }, [])
+  },[category])
 
   return (
     <GuidedStepsTemplate>
@@ -37,7 +36,7 @@ const StartRacesView = (): JSX.Element => {
       <Grid container spacing={4}>
         {loader
           ? races.map(({ nombre, id }) => (
-            <Grid item xs={6} sm={3} md={4} lg={4}>
+            <Grid item xs={6} sm={3} md={4} lg={4} key={id}>
               <CardText key={`${id}_text`} link={`/start/${category}/${id}`} text={nombre} />
             </Grid>
           ))
